@@ -40,7 +40,6 @@ Settlement
   v
 Bank
 ```
---
 # Core Components
 1. Transaction Dataset
 
