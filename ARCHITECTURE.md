@@ -26,9 +26,20 @@ Synthetic Transaction Dataset
                     ▼
             Finance Dashboard
 ```
-# Transaction Flow
+## Transaction Flow
 
-Order -> Payment -> Settlement -> Bank
+```text
+Order
+  |
+  v
+Payment
+  |
+  v
+Settlement
+  |
+  v
+Bank
+```
 --
 # Core Components
 1. Transaction Dataset
