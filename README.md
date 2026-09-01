@@ -335,7 +335,7 @@ The project focuses on closing one finance-operations loop across a 100-record s
 
 ### 5-Minute Demo
 
-Coming soon
+https://drive.google.com/file/d/1iLRopPHJrQHgZN-WCTnTDYEJBsTd9THH/view?usp=sharing
 
 ### Architecture
 
