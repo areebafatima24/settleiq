@@ -2,55 +2,49 @@
 
 ### AI Finance Controller for Payment Settlement Reconciliation
 
-SettleIQ is an AI-powered finance controller that reconciles merchant transactions across the complete payment settlement chain:
+SettleIQ is an AI-powered finance controller that automatically reconciles merchant transactions across Orders, Payments, Settlements and Bank records.
 
-**Order → Payment → Settlement → Bank**
+It identifies mismatches, explains discrepancies using available transaction evidence, prioritizes exceptions for human review, and maintains an auditable record of reconciliation decisions.
 
-It identifies matched transactions, detects discrepancies, investigates exceptions using transaction-level evidence, and routes uncertain cases for human review.
-
-## 🚀 Live Demo
-
-**[Launch SettleIQ](https://settle-iq-flow.base44.app/)**
+🔗 **Live Demo:** https://settle-iq-flow.base44.app/
 
 ---
 
 ## 🎯 Problem
 
-Payment operations often require finance teams to reconcile the same transaction across multiple systems.
+Payment businesses process large volumes of transactions across multiple systems.
 
-A single transaction can appear across:
+A single transaction can pass through:
 
-- Orders
-- Payments
-- Settlements
-- Bank records
+**Order → Payment → Settlement → Bank**
 
-When these records disagree, the real challenge is not just finding the mismatch. The finance team needs to understand:
+When these records do not match, finance teams need to determine:
 
-**What happened? Why did it happen? Can it be safely resolved? Does a human need to intervene?**
+- What happened?
+- Where did the discrepancy occur?
+- How much money is affected?
+- Can the issue be resolved automatically?
+- Does a human need to investigate?
 
-SettleIQ is designed to close this reconciliation loop.
+Traditional reconciliation workflows can require significant manual investigation.
 
 ---
 
 ## 💡 Solution
 
-SettleIQ traces every transaction through:
+SettleIQ provides an AI-assisted reconciliation workflow that:
 
-**Order → Payment → Settlement → Bank**
+1. Processes a batch of transaction records.
+2. Matches records across the payment settlement chain.
+3. Identifies exceptions and discrepancies.
+4. Investigates individual transactions using available evidence.
+5. Explains the likely cause of an exception.
+6. Assigns confidence to the investigation.
+7. Recommends the next action.
+8. Escalates uncertain cases to human reviewers.
+9. Records reconciliation activity in an audit trail.
 
-The system then:
-
-1. Compares expected and observed financial values.
-2. Detects matches and discrepancies.
-3. Classifies exceptions.
-4. Assigns a confidence level.
-5. Investigates discrepancies using transaction evidence.
-6. Provides a recommended next action.
-7. Escalates uncertain cases for human review.
-8. Records reconciliation activity in an audit trail.
-
-The system is intentionally designed not to force an explanation when the available evidence is insufficient.
+The system is designed to be **explainable, bounded and human-supervised**.
 
 ---
 
@@ -60,141 +54,293 @@ SettleIQ was evaluated on a synthetic batch of **100 transaction records**.
 
 | Metric | Result |
 |---|---:|
-| Batch size | 100 |
-| Records processed | 100 |
-| Reconciled | 78 |
-| Match rate | 78.0% |
+| Batch Size | 100 |
+| Records Processed | 100 |
+| Matched | 78 |
+| Match Rate | 78.0% |
 | Exceptions | 22 |
-| Unresolved cases | 3 |
-| Total amount processed | ₹10,09,506 |
-| Total reconciled | ₹9,40,961 |
-| Unresolved variance | ₹3,110 |
-| Audit events | 252 |
+| Unresolved Cases | 3 |
+| Total Amount Processed | ₹10,09,506 |
+| Total Reconciled | ₹9,40,961 |
+| Unresolved Variance | ₹3,110 |
+| Audit Events | 252 |
 
 ### Exception Breakdown
 
-| Exception Type | Count |
+| Status | Count |
 |---|---:|
 | Matched | 78 |
-| Amount mismatch | 7 |
-| Missing record | 4 |
+| Amount Mismatch | 7 |
+| Missing Record | 4 |
 | Duplicate | 3 |
-| Timing mismatch | 5 |
+| Timing Mismatch | 5 |
 | Unresolved | 3 |
 
-The system does not force every transaction into a successful resolution.
-
-Three cases remain explicitly unresolved and are routed for human review.
-
-> **Note:** The 78.0% figure represents the reconciliation match rate on this synthetic evaluation batch. It is not presented as a general-purpose AI accuracy score.
+**Important:** The 78.0% figure is the reconciliation match rate for this synthetic evaluation batch. It is not presented as general-purpose AI accuracy.
 
 ---
 
-## 🧠 AI Finance Analyst
+## 🤖 AI Finance Analyst
 
-SettleIQ includes a finance-specific AI analyst grounded in the reconciliation dataset.
+SettleIQ includes a grounded AI Finance Analyst that answers questions using the reconciliation dataset.
 
-Instead of acting as a generic chatbot, it answers questions using the actual transaction records available in the system.
-
-Example questions:
+Example questions include:
 
 - How many payments are missing settlement records?
-- Which transactions have the largest variance?
-- What are the most common exception types?
+- Which transactions have amount mismatches?
+- What are the highest-value exceptions?
 - Which transactions require human review?
-- Why was this transaction not reconciled?
+- What happened to a specific transaction?
+
+The analyst is designed to reason from available transaction evidence rather than provide generic financial answers.
 
 ---
 
 ## 🔎 Settlement Detective
 
-The Settlement Detective allows a finance user to investigate an individual transaction across:
+Settlement Detective provides transaction-level investigation.
+
+For each transaction, SettleIQ can trace:
 
 **Order → Payment → Settlement → Bank**
 
-Each investigation can present:
+The investigation provides:
 
 - What happened
-- Transaction evidence
+- Supporting evidence
 - Likely cause
-- AI confidence
+- Confidence level
 - Whether human review is required
-- Recommended action
+- Recommended next action
 
-This turns reconciliation from simply detecting a mismatch into investigating why the mismatch occurred.
+This makes the reconciliation process easier to understand and audit.
 
 ---
 
-## ⚠️ Exception Management
+## 🚨 Exception Management
 
-SettleIQ categorizes problematic transactions into:
+SettleIQ categorizes reconciliation exceptions including:
 
-- Amount mismatch
-- Missing record
+- Amount Mismatch
+- Missing Record
 - Duplicate
-- Timing mismatch
+- Timing Mismatch
 - Unresolved
 
-Each exception includes relevant information such as:
+Each exception can include:
 
-- Variance
+- Financial variance
 - Priority
 - AI confidence
 - Recommended action
 - Review status
 
-This gives finance teams a focused exception queue instead of requiring them to manually inspect every transaction.
+Low-confidence cases are deliberately routed for human investigation.
 
 ---
 
 ## 🧾 Audit Trail
 
-SettleIQ maintains a traceable audit trail of reconciliation activity.
+SettleIQ maintains a traceable record of reconciliation activity.
 
-The current prototype records **252 audit events**, including:
+The audit trail records events such as:
 
-- Record imported
-- Match detected
+- Transaction imported
+- Transaction matched
 - Exception detected
 - AI investigation performed
 - Recommendation generated
 - Human review required
 
-This provides visibility into how reconciliation decisions were reached.
+The prototype contains **252 audit events** for the evaluation batch.
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
-                 Synthetic Transaction Data
-                           │
-                           ▼
-                Transaction Processing
-                           │
-                           ▼
-                 Reconciliation Engine
-                           │
-                 ┌─────────┴─────────┐
-                 ▼                   ▼
-              Matched            Exception
-                 │                   │
-                 │                   ▼
-                 │             AI Investigation
-                 │                   │
-                 │          ┌────────┴────────┐
-                 │          ▼                 ▼
-                 │     Resolvable        Unresolved
-                 │          │                 │
-                 │          ▼                 ▼
-                 │   Recommendation      Human Review
-                 │
-                 └────────────┬────────────┘
-                              ▼
-                         Audit Trail
-                              │
-                              ▼
-                      Finance Dashboard
+                    ┌───────────────────────┐
+                    │   Synthetic Dataset   │
+                    │     100 Records       │
+                    └───────────┬───────────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │ Reconciliation Engine │
+                    │                       │
+                    │ Order → Payment →     │
+                    │ Settlement → Bank     │
+                    └───────────┬───────────┘
+                                │
+                    ┌───────────┴───────────┐
+                    ▼                       ▼
+          ┌─────────────────┐     ┌─────────────────┐
+          │ Matched Records │     │    Exceptions   │
+          │                 │     │                 │
+          │ 78 Records      │     │ 22 Records      │
+          └────────┬────────┘     └────────┬────────┘
+                   │                       │
+                   │                       ▼
+                   │             ┌──────────────────┐
+                   │             │ AI Investigation │
+                   │             └────────┬─────────┘
+                   │                      │
+                   │              ┌───────┴────────┐
+                   │              ▼                ▼
+                   │       Auto-resolvable    Human Review
+                   │
+                   └──────────────┬─────────────────┘
+                                  ▼
+                         ┌──────────────────┐
+                         │   Audit Trail    │
+                         └──────────────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │ Finance Dashboard│
+                         └──────────────────┘
+```
+---
 
+## 🛡️ Safety & Reliability
 
+### Human-in-the-loop
 
+Low-confidence and unresolved cases are explicitly escalated for human review.
+
+### Evidence-based investigation
+
+AI investigations are grounded in transaction evidence available to the system.
+
+### Honest exceptions
+
+The system reports unresolved cases instead of pretending that every transaction can be confidently resolved.
+
+### No automatic movement of money
+
+Recommendations are advisory only.
+
+**No money is moved by the prototype.**
+
+### Synthetic data
+
+The prototype uses synthetic transaction records and does not process real customer financial information.
+
+---
+
+## 🖥️ Product Modules
+
+### Finance Dashboard
+
+Provides an overview of reconciliation health, processed records, exceptions and financial variance.
+
+### Reconciliation Workspace
+
+Compares transactions across Orders, Payments, Settlements and Bank records.
+
+### Exception Queue
+
+Provides a focused view of transactions requiring investigation.
+
+### Settlement Detective
+
+Traces individual transactions through the complete settlement chain.
+
+### AI Finance Analyst
+
+Answers finance questions using the reconciliation dataset.
+
+### Batch Evaluation
+
+Shows measured batch performance, match rate and exception distribution.
+
+### Audit Trail
+
+Provides a traceable record of reconciliation activity.
+
+---
+
+## ⚙️ Technology
+
+- React
+- TypeScript
+- AI-powered investigation
+- Structured synthetic transaction dataset
+- Reconciliation workflow
+- Exception classification
+- Audit logging
+- Responsive web interface
+
+---
+
+## 📈 Why SettleIQ?
+
+The difficult part of financial reconciliation is not only finding that two records do not match.
+
+The real operational questions are:
+
+> **What happened? Why did it happen? Should someone intervene?**
+
+SettleIQ combines reconciliation, evidence-based investigation, exception routing and auditability into one focused payment settlement workflow.
+
+The project deliberately prioritizes reliable handling of uncertainty rather than forcing every transaction into a successful outcome.
+
+---
+
+## ⚠️ Limitations
+
+SettleIQ is a buildathon prototype using synthetic data.
+
+It does not:
+
+- Move real money
+- Connect to production banking systems
+- Perform real settlements
+- Replace production accounting systems
+- Make unsupervised financial decisions
+
+The evaluation results shown in the prototype are based on the synthetic batch used for this project.
+
+---
+
+## 🔭 Future Work
+
+Potential extensions include:
+
+- Payment gateway integrations
+- Bank statement ingestion
+- ERP and accounting system integrations
+- Continuous reconciliation
+- Historical anomaly detection
+- Evaluation against larger labeled reconciliation datasets
+- Role-based finance approvals
+- Bounded automated exception workflows
+- Production monitoring and model evaluation
+
+---
+
+## 🏆 Razorpay AI Buildathon
+
+SettleIQ was built for the **AI Finance Controller** track.
+
+The project focuses on closing one finance-operations loop across a 100-record synthetic batch while providing measurable reconciliation results, explainable investigation, human escalation and an honest unresolved exception list.
+
+---
+
+## 🚀 Try SettleIQ
+
+### Live Demo
+
+**https://settle-iq-flow.base44.app/**
+
+### 5-Minute Demo
+
+Coming soon
+
+### Architecture
+
+See the architecture section above.
+
+---
+
+### Built with a focus on reliability, explainability and human oversight.
